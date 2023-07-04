@@ -1,0 +1,15 @@
+<launch>
+
+    <arg name="old_tf_topic" default="/tf_wall_time"/>
+    <arg name="new_tf_topic" default="/tf"/>
+
+    <node
+        pkg="tf_republisher_clock"
+        type="tf_republisher_clock.py"
+        name="tf_republisher_clock"
+        output="screen">
+        <param name="old_tf_topic" value="$(arg old_tf_topic)"/>
+        <param name="new_tf_topic" value="$(arg new_tf_topic)"/>
+    </node>
+
+</launch>
