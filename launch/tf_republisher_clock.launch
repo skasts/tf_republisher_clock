@@ -2,6 +2,7 @@
 
     <arg name="old_tf_topic" default="/tf_wall_time"/>
     <arg name="new_tf_topic" default="/tf"/>
+    <arg name="rate" default="50"/>
 
     <node
         pkg="tf_republisher_clock"

@@ -4,6 +4,7 @@ import rospy
 from tf2_msgs.msg import TFMessage
 from rosgraph_msgs.msg import Clock
 from threading import Lock
+import time
 
 class TfRepublisherClock:
 
@@ -49,10 +50,13 @@ class TfRepublisherClock:
 def main():
 
     node = TfRepublisherClock()
-    rate = rospy.Rate(50)
+
+    # We cannot use rospy rate because time might jump (i.e. when using rosbag 
+    # play --clock)
+    rate = rospy.get_param('~rate', 50)
     while not rospy.is_shutdown():
         node.run()
-        rate.sleep()
+        time.sleep(1/rate)
 
 if __name__ == "__main__":
 
